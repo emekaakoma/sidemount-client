@@ -6,20 +6,20 @@ export const NavBar = () => {
     return (
         <ul className="navbar">
             <li className="navbar__item">
-                Navigation link
+                <Link to="/events">Events</Link>
             </li>
             <li className="navbar__item">
-                Navigation link
+                <Link to="/createevent">Create Event</Link>
             </li>
             <li className="navbar__item">
                 Navigation link
             </li>
             {
-                (localStorage.getItem("lu_token") !== null) ?
+                (localStorage.getItem("sm_token") !== null) ?
                     <li className="nav-item">
                         <button className="nav-link fakeLink"
                             onClick={() => {
-                                localStorage.removeItem("lu_token")
+                                localStorage.removeItem("sm_token")
                                 navigate('/login')
                             }}
                         >Logout</button>
