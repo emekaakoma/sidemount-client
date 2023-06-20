@@ -1,7 +1,8 @@
 import React, { useRef } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { loginUser } from "../../managers/AuthManager"
-import "./Auth.css"
+
+import logo from "../../logo/sidemount.png"
 
 
 export const Login = () => {
@@ -20,7 +21,7 @@ export const Login = () => {
             .then(res => {
                 if ("valid" in res && res.valid && "token" in res) {
                     localStorage.setItem("sm_token", res.token)
-                    navigate("/")
+                    navigate("/events")
                 }
                 else {
                     invalidDialog.current.showModal()
@@ -29,27 +30,27 @@ export const Login = () => {
     }
 
     return (
-        <main className="container--login">
+        <main className="container--login" class="has-text-centered mt-6 container">
             <dialog className="dialog dialog--auth" ref={invalidDialog}>
                 <div>Username or password was not valid.</div>
                 <button className="button--close" onClick={e => invalidDialog.current.close()}>Close</button>
             </dialog>
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
-                    <h1>Level Up</h1>
-                    <h2>Please sign in</h2>
+                    <img src={logo} height="200" width="200"></img>
+                    <h2 class="subtitle">Please sign in</h2>
                     <fieldset>
-                        <label htmlFor="inputUsername"> Username address </label>
-                        <input ref={username} type="username" id="username" className="form-control" placeholder="Username address" required autoFocus />
+                        <label htmlFor="inputUsername" class="label my-2 has-text-centered"> Username address </label>
+                        <input ref={username} type="username" id="username" class="has-text-centered" className="form-control" placeholder="Username address" required autoFocus />
                     </fieldset>
                     <fieldset>
-                        <label htmlFor="inputPassword"> Password </label>
-                        <input ref={password} type="password" id="password" className="form-control" placeholder="Password" required />
+                        <label htmlFor="inputPassword" class="label my-2"> Password </label>
+                        <input ref={password} type="password" id="password" class="has-text-centered" className="form-control" placeholder="Password" required />
                     </fieldset>
                     <fieldset style={{
                         textAlign: "center"
                     }}>
-                        <button className="btn btn-1 btn-sep icon-send" type="submit">Sign In</button>
+                        <button className="btn" class="button is-rounded mt-3" type="submit">Sign In</button>
                     </fieldset>
                 </form>
             </section>
